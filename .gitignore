@@ -2,6 +2,19 @@
 __pycache__/
 *.py[cod]
 
+*.DS_Store
+
+# Video files
+*.srt
+*.sbv
+*.vtt
+*.flv
+*.mp4
+*.m4a
+*.m4v
+*.part
+*.swp
+
 # C extensions
 *.so
 
