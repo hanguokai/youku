@@ -14,7 +14,6 @@ class UserTest(unittest.TestCase):
 
     def test_my_info(self):
         me = self.youku.my_info(ACCESS_TOKEN)
-        print_json(me)
         self.assertIn('id', me)
 
     def test_by_id(self):
