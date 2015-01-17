@@ -257,7 +257,7 @@ class YoukuVideos(object):
         check_error(r)
         return r.json()['id']
 
-    def find_videos_by_category(self, category, genre,
+    def find_videos_by_category(self, category, genre=None,
                                 period='today',
                                 orderby='view-count',
                                 page=1, count=20):
@@ -267,12 +267,13 @@ class YoukuVideos(object):
         params = {
             'client_id': self.client_id,
             'category': category,
-            'genre': genre,
             'period': period,
             'orderby': orderby,
             'page': page,
             'count': count
         }
+        if genre:
+            params['genre'] = genre
         r = requests.get(url, params=params)
         check_error(r)
         return r.json()

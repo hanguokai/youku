@@ -106,7 +106,10 @@ class YoukuShows(object):
             'client_id': self.client_id,
             'show_id': show_id,
             'page': page,
-            'count': count
+            'count': count,
+            'show_videotype': show_videotype,
+            'show_videostage': show_videostage,
+            'orderby': orderby
         }
         params = remove_none_value(params)
         r = requests.get(url, params=params)
