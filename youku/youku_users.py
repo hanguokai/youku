@@ -112,7 +112,7 @@ class YoukuUsers(object):
         check_error(r)
         return r.json()
 
-    def friendship_create(self, access_token,
+    def create_friendship(self, access_token,
                           user_id=None, user_name=None):
         """doc: http://open.youku.com/docs/doc?id=28
         """
@@ -128,7 +128,7 @@ class YoukuUsers(object):
         check_error(r)
         return r.json()
 
-    def friendship_destroy(self, access_token,
+    def destroy_friendship(self, access_token,
                            user_id=None, user_name=None):
         """doc: ??
         """
@@ -144,7 +144,7 @@ class YoukuUsers(object):
         check_error(r)
         return r.json()
 
-    def subscribe_create(self, access_token, show_id):
+    def create_subscribe(self, access_token, show_id):
         """doc: http://open.youku.com/docs/doc?id=29
         """
         url = 'https://openapi.youku.com/v2/users/subscribe/create.json'
@@ -157,7 +157,7 @@ class YoukuUsers(object):
         check_error(r)
         return r.json()['result'] == 0
 
-    def subscribe_cancel(self, access_token, show_id):
+    def cancel_subscribe(self, access_token, show_id):
         """doc: ??
         """
         url = 'https://openapi.youku.com/v2/users/subscribe/cancel.json'

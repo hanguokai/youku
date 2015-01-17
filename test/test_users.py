@@ -41,13 +41,13 @@ class UserTest(unittest.TestCase):
         self.assertIn('total', users)
 
     def test_friendship_create_destroy(self):
-        self.youku.friendship_create(ACCESS_TOKEN, user_name='GDGBeijing')
-        self.youku.friendship_destroy(ACCESS_TOKEN, user_name='GDGBeijing')
+        self.youku.create_friendship(ACCESS_TOKEN, user_name='GDGBeijing')
+        self.youku.destroy_friendship(ACCESS_TOKEN, user_name='GDGBeijing')
 
     def test_subscribe_create_cancel(self):
-        self.assertTrue(self.youku.subscribe_create(ACCESS_TOKEN,
+        self.assertTrue(self.youku.create_subscribe(ACCESS_TOKEN,
                         '2a7260de1faa11e097c0'))
-        self.assertTrue(self.youku.subscribe_cancel(ACCESS_TOKEN,
+        self.assertTrue(self.youku.cancel_subscribe(ACCESS_TOKEN,
                         '2a7260de1faa11e097c0'))
 
     def test_subscribe_get(self):
