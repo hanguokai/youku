@@ -1,6 +1,6 @@
 """Youku Open API V2 Python Client
 
-doc: http://open.youku.com/docs/upload.html
+doc: http://open.youku.com/docs/doc?id=110
 """
 
 import os
@@ -21,7 +21,7 @@ class YoukuUpload(object):
     Should use one instance of YoukuUpload for one upload file in one thread,
     since it has internal state of upload process.
 
-    doc: http://open.youku.com/docs/upload_client_chinese.html
+    doc: http://open.youku.com/docs/doc?id=110
     """
 
     def __init__(self, client_id, access_token, file, logger=None):
@@ -299,6 +299,9 @@ class YoukuUpload(object):
                 params: a dict object describe video info, eg title,
                 tags, description, category.
                 all video params see the doc of prepare_video_params.
+
+           Returns:
+                return video_id if upload successfully
         """
         if self.upload_token is not None:
             # resume upload
