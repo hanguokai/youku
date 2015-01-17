@@ -42,6 +42,13 @@ def check_error(response, expect_status=200):
                              response.status_code)
 
 
+def remove_none_value(data):
+    """remove item from dict if value is None.
+    return new dict.
+    """
+    return dict((k, v) for k, v in data.iteritems() if v is not None)
+
+
 class YoukuError(Exception):
 
     """ Youku error.

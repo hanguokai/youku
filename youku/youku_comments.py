@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error
+from util import check_error, remove_none_value
 
 
 class YoukuComments(object):
@@ -135,15 +135,12 @@ class YoukuComments(object):
             'client_id': self.client_id,
             'access_token': access_token,
             'video_id': video_id,
-            'content': content
+            'content': content,
+            'reply_id': reply_id,
+            'captcha_key': captcha_key,
+            'captcha_text': captcha_text
         }
-        if reply_id:
-            data['reply_id'] = reply_id
-        if captcha_key:
-            data['captcha_key'] = captcha_key
-        if captcha_text:
-            data['captcha_text'] = captcha_text
-
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()['id']

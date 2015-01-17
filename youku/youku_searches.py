@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error
+from util import check_error, remove_none_value
 
 
 class YoukuSearchs(object):
@@ -62,8 +62,7 @@ class YoukuSearchs(object):
             'page': page,
             'count': count
         }
-        # remove None value
-        params = dict((k, v) for k, v in params.iteritems() if v is not None)
+        params = remove_none_value(params)
         r = requests.get(url, params=params)
         check_error(r)
         return r.json()
@@ -90,8 +89,7 @@ class YoukuSearchs(object):
             'page': page,
             'count': count
         }
-        # remove None value
-        params = dict((k, v) for k, v in params.iteritems() if v is not None)
+        params = remove_none_value(params)
         r = requests.get(url, params=params)
         check_error(r)
         return r.json()
@@ -130,12 +128,11 @@ class YoukuSearchs(object):
         url = 'https://openapi.youku.com/v2/searches/show/address_unite.json'
         params = {
             'client_id': self.client_id,
-            'progammeId': progammeId
+            'progammeId': progammeId,
+            'source_site': source_site,
+            'type': type
         }
-        if source_site:
-            params['source_site'] = source_site
-        if type:
-            params['type'] = type
+        params = remove_none_value(params)
         r = requests.get(url, params=params)
         check_error(r)
         return r.json()
@@ -160,8 +157,7 @@ class YoukuSearchs(object):
             'page': page,
             'count': count
         }
-        # remove None value
-        params = dict((k, v) for k, v in params.iteritems() if v is not None)
+        params = remove_none_value(params)
         r = requests.get(url, params=params)
         check_error(r)
         return r.json()

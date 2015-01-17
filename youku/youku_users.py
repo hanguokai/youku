@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error
+from util import check_error, remove_none_value
 
 
 class YoukuUsers(object):
@@ -50,11 +50,12 @@ class YoukuUsers(object):
 
     def _find_user(self, user_id=None, user_name=None):
         url = 'https://openapi.youku.com/v2/users/show.json'
-        data = {'client_id': self.client_id}
-        if user_id:
-            data['user_id'] = user_id
-        elif user_name:
-            data['user_name'] = user_name
+        data = {
+            'client_id': self.client_id,
+            'user_id': user_id,
+            'user_name': user_name
+        }
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         if r.status_code == 400:
             # Youku return 400 if no result, but this is not friendly.
@@ -64,11 +65,12 @@ class YoukuUsers(object):
 
     def _find_users(self, user_ids=None, user_names=None):
         url = 'https://openapi.youku.com/v2/users/show_batch.json'
-        data = {'client_id': self.client_id}
-        if user_ids:
-            data['user_ids'] = user_ids
-        elif user_names:
-            data['user_names'] = user_names
+        data = {
+            'client_id': self.client_id,
+            'user_ids': user_ids,
+            'user_names': user_names
+        }
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         if r.status_code == 400:
             # Youku return 400 if no result, but this is not friendly.
@@ -84,12 +86,11 @@ class YoukuUsers(object):
         data = {
             'client_id': self.client_id,
             'page': page,
-            'count': count
+            'count': count,
+            'user_id': user_id,
+            'user_name': user_name
         }
-        if user_id:
-            data['user_id'] = user_id
-        elif user_name:
-            data['user_name'] = user_name
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()
@@ -102,12 +103,11 @@ class YoukuUsers(object):
         data = {
             'client_id': self.client_id,
             'page': page,
-            'count': count
+            'count': count,
+            'user_id': user_id,
+            'user_name': user_name
         }
-        if user_id:
-            data['user_id'] = user_id
-        elif user_name:
-            data['user_name'] = user_name
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()
@@ -119,12 +119,11 @@ class YoukuUsers(object):
         url = 'https://openapi.youku.com/v2/users/friendship/create.json'
         data = {
             'client_id': self.client_id,
-            'access_token': access_token
+            'access_token': access_token,
+            'user_id': user_id,
+            'user_name': user_name
         }
-        if user_id:
-            data['user_id'] = user_id
-        elif user_name:
-            data['user_name'] = user_name
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()
@@ -136,12 +135,11 @@ class YoukuUsers(object):
         url = 'https://openapi.youku.com/v2/users/friendship/destroy.json'
         data = {
             'client_id': self.client_id,
-            'access_token': access_token
+            'access_token': access_token,
+            'user_id': user_id,
+            'user_name': user_name
         }
-        if user_id:
-            data['user_id'] = user_id
-        elif user_name:
-            data['user_name'] = user_name
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()
@@ -197,4 +195,3 @@ class YoukuUsers(object):
         r = requests.get(url, params=params)
         check_error(r)
         return r.json()
-

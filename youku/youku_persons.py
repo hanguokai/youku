@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error
+from util import check_error, remove_none_value
 
 
 class YoukuPersons(object):
@@ -56,8 +56,7 @@ class YoukuPersons(object):
             'page': page,
             'count': count
         }
-        # remove None value
-        params = dict((k, v) for k, v in params.iteritems() if v is not None)
+        params = remove_none_value(params)
         r = requests.get(url, params=params)
         check_error(r)
         return r.json()

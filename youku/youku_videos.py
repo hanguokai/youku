@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error
+from util import check_error, remove_none_value
 
 
 class YoukuVideos(object):
@@ -150,8 +150,7 @@ class YoukuVideos(object):
             'description': description,
             'thumbnail_seq': thumbnail_seq
         }
-        # remove None value
-        data = dict((k, v) for k, v in data.iteritems() if v is not None)
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()['id']

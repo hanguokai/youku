@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error
+from util import check_error, remove_none_value
 
 
 class YoukuPlaylists(object):
@@ -130,12 +130,11 @@ class YoukuPlaylists(object):
             'client_id': self.client_id,
             'access_token': access_token,
             'title': title,
-            'tags': tags
+            'tags': tags,
+            'category': category,
+            'description': description
         }
-        if category:
-            data['category'] = category
-        if description:
-            data['description'] = description
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()['id']
@@ -154,7 +153,7 @@ class YoukuPlaylists(object):
             'category': category,
             'description': description
         }
-        data = dict((k, v) for k, v in data.iteritems() if v is not None)
+        data = remove_none_value(data)
         r = requests.post(url, data=data)
         check_error(r)
         return r.json()['id']
