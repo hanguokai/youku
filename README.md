@@ -48,7 +48,7 @@ from youku import YoukuUpload
 
 def main():
     file_info = {
-      'title': u'Google I/O 2014'
+      'title': u'Google I/O 2014',
       'tags': 'Google,IO',
       'description': 'I/O Keynote'
     }
