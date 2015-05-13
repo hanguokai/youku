@@ -86,6 +86,10 @@ class YoukuUpload(object):
             title = self.file_name
         elif len(title) > 80:
             title = title[:80]
+
+        if len(description) > 2000:
+            description = description[0:2000]
+
         params['title'] = title
         params['tags'] = tags
         params['description'] = description
