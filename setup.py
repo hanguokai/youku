@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='youku',
-    version='0.0.7',
+    version='0.0.8',
     description='Youku open api python client and video uploader',
     long_description='Youku open api python client,'
     '  support video upload and other api, do not support video download.',
