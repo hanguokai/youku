@@ -63,6 +63,9 @@ if __name__ == "__main__":
     main()
 ```
 
+client_id 在[这里](http://cloud.youku.com/app)获取。
+access_token 可以从[这里](http://cloud.youku.com/tools)手工获取。
+
 因为上传包含内部状态，所以每个上传文件需要新建一个 YoukuUpload 对象，并在一个线程中执行。
 其它各功能 API 都是简单的无状态 REST 调用，所有请求只需要构建一个对象使用即可。
 
