@@ -39,6 +39,9 @@ from youku import YoukuVideos
 def main():
     youku = YoukuVideos(CLIENT_ID)
     video = youku.find_video_by_id(VIDEO_ID)
+
+if __name__ == "__main__":
+    main()
 ```
 
 
@@ -55,6 +58,9 @@ def main():
     file = '/home/hanguokai/filename.mp4'
     youku = YoukuUpload(CLIENT_ID, ACCESS_TOKEN, file)
     youku.upload(file_info)
+
+if __name__ == "__main__":
+    main()
 ```
 
 因为上传包含内部状态，所以每个上传文件需要新建一个 YoukuUpload 对象，并在一个线程中执行。
