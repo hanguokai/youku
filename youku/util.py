@@ -1,4 +1,9 @@
-import urlparse
+try:
+    # Python 3
+    from urllib.parse import parse_qs
+except ImportError:
+    # Python 2
+    from urlparse import parse_qs
 
 
 def check_error(response, expect_status=200):
@@ -35,7 +40,7 @@ def check_error(response, expect_status=200):
                              error['description'], response.status_code)
         else:
             # try to parse error from body
-            error = urlparse.parse_qs(response.text)
+            error = parse_qs(response.text)
             raise YoukuError(error.get('code', [None])[0],
                              error.get('type', [None])[0],
                              error.get('description', [None])[0],
@@ -46,7 +51,7 @@ def remove_none_value(data):
     """remove item from dict if value is None.
     return new dict.
     """
-    return dict((k, v) for k, v in data.iteritems() if v is not None)
+    return dict((k, v) for k, v in data.items() if v is not None)
 
 
 class YoukuError(Exception):

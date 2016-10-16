@@ -3,7 +3,12 @@
 doc: http://open.youku.com/docs/tech_doc.html
 """
 import requests
-import urllib
+try:
+    # Python 3
+    from urllib.parse import urlencode
+except ImportError:
+    # Python 2
+    from urllib import urlencode
 from util import check_error
 
 
@@ -30,7 +35,7 @@ class YoukuOauth(object):
             'state': state,
             'redirect_uri': self.redirect_uri
         }
-        return url + urllib.urlencode(params)
+        return url + urlencode(params)
 
     def get_token_by_code(self, code):
         '''return origin json'''

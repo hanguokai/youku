@@ -165,7 +165,7 @@ class YoukuUpload(object):
                 # check upload_token expired
                 try:
                     self.check()
-                except YoukuError, e:
+                except YoukuError as e:
                     if e.code == 120010223:
                         # Expired upload token
                         self.upload_token = None
