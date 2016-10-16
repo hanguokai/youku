@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='youku',
-    version='0.0.8',
+    version='0.0.9',
     description='Youku open api python client and video uploader',
     long_description='Youku open api python client,'
     '  support video upload and other api, do not support video download.',
@@ -19,7 +19,6 @@ setup(
         "Development Status :: 4 - Beta",
         "Environment :: Console",
         "License :: OSI Approved :: Apache Software License",
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7"
+        "Programming Language :: Python"
     ],
 )
