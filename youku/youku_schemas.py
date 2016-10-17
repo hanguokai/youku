@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error
+from .util import check_error
 
 
 class YoukuSchemas(object):

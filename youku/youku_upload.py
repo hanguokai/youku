@@ -10,7 +10,7 @@ import hashlib
 import logging
 import socket
 from time import sleep
-from util import check_error, YoukuError
+from .util import check_error, YoukuError
 
 
 class YoukuUpload(object):

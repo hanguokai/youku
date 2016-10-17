@@ -4,7 +4,7 @@ doc: http://open.youku.com/docs/tech_doc.html
 """
 
 import requests
-from util import check_error, remove_none_value
+from .util import check_error, remove_none_value
 
 
 class YoukuShows(object):

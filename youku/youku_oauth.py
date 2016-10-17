@@ -9,7 +9,7 @@ try:
 except ImportError:
     # Python 2
     from urllib import urlencode
-from util import check_error
+from .util import check_error
 
 
 class YoukuOauth(object):
