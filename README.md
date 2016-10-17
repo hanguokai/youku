@@ -27,7 +27,7 @@ user 指优酷网站上的注册用户， person 指节目中的演员、导演�
 ## 开发说明
 使用 pip 安装 youku: <code>pip install youku</code>
 
-客户端已在 Python 2.6.x 以上测试过，未测试过 Python 3 。依赖的第三方库只有 requests，使用 pip 安装时会自动安装 requests 。
+客户端已在 Python 2.6.x 以上测试过，兼容 Python 3 。依赖的第三方库只有 requests，使用 pip 安装时会自动安装 requests 。
 
 各种 API 细节，如参数、返回值等请参考[优酷 API 官方文档](http://open.youku.com/docs/doc?id=0)和本项目中的源代码及测试代码，基本上都是一一对应的。
 
