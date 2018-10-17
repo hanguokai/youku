@@ -55,9 +55,9 @@ class YoukuVideos(object):
         return r.json()
 
     def find_video_detail_by_id(self, video_id, ext=None):
-        """doc: http://open.youku.com/docs/doc?id=46
+        """doc: http://cloud.youku.com/docs?id=46
         """
-        url = 'https://openapi.youku.com/v2/videos/show.json'
+        url = 'https://api.youku.com/videos/show.json'
         params = {
             'client_id': self.client_id,
             'video_id': video_id
@@ -84,9 +84,9 @@ class YoukuVideos(object):
 
     def find_videos_by_me(self, access_token, orderby='published',
                           page=1, count=20):
-        """doc: http://open.youku.com/docs/doc?id=48
+        """doc: http://cloud.youku.com/docs?id=48
         """
-        url = 'https://openapi.youku.com/v2/videos/by_me.json'
+        url = 'https://api.youku.com/videos/by_me.json'
         params = {
             'client_id': self.client_id,
             'access_token': access_token,

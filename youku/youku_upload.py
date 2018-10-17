@@ -1,6 +1,6 @@
-"""Youku Open API V2 Python Client
+"""Youku cloud Python Client
 
-doc: http://open.youku.com/docs/doc?id=110
+doc: http://cloud.youku.com/docs/doc?id=110
 """
 
 import os
@@ -21,7 +21,7 @@ class YoukuUpload(object):
     Should use one instance of YoukuUpload for one upload file in one thread,
     since it has internal state of upload process.
 
-    doc: http://open.youku.com/docs/doc?id=110
+    doc: http://cloud.youku.com/docs/doc?id=110
     """
 
     def __init__(self, client_id, access_token, file, logger=None):
@@ -65,7 +65,7 @@ class YoukuUpload(object):
 
         Only need to provide a minimum of two essential parameters:
         title and tags, other video params are optional. All params spec
-        see: http://open.youku.com/docs/upload_client_chinese.html#create .
+        see: http://cloud.youku.com/docs?id=110#create .
 
         Args:
             title: string, 2-50 characters.
@@ -121,7 +121,7 @@ class YoukuUpload(object):
         params['client_id'] = self.client_id
         params['access_token'] = self.access_token
 
-        url = 'https://openapi.youku.com/v2/uploads/create.json'
+        url = 'https://api.youku.com/uploads/create.json'
         r = requests.get(url, params=params)
         check_error(r, 201)
         result = r.json()
@@ -129,12 +129,6 @@ class YoukuUpload(object):
         self.upload_token = result['upload_token']
         self.logger.info('upload token of %s: %s' %
                          (self.file_name, self.upload_token))
-
-        if result['instant_upload_ok'] == 'yes':
-            # pass upload and finish
-            # this case hasn't happen and test
-            self.logger.info("instant upload %s" % self.file_name)
-            return self.commit()
 
         self.upload_server_ip = socket.gethostbyname(
             result['upload_server_uri'])
@@ -262,7 +256,7 @@ class YoukuUpload(object):
             'upload_token': self.upload_token,
             'upload_server_ip': status['upload_server_ip']
         }
-        url = 'https://openapi.youku.com/v2/uploads/commit.json'
+        url = 'https://api.youku.com/uploads/commit.json'
         r = requests.post(url, data=params)
         check_error(r, 200)
         self.finished = True
@@ -277,14 +271,14 @@ class YoukuUpload(object):
             'upload_token': self.upload_token,
             'upload_server_ip': status['upload_server_ip']
         }
-        url = 'https://openapi.youku.com/v2/uploads/cancel.json'
+        url = 'https://api.youku.com/uploads/cancel.json'
         r = requests.get(url, params=params)
         check_error(r, 200)
         self._delete_upload_state_file()
         return r.json()['upload_token']
 
     def spec(self):
-        url = 'https://openapi.youku.com/v2/schemas/upload/spec.json'
+        url = 'https://api.youku.com/schemas/upload/spec.json'
         r = requests.get(url)
         check_error(r, 200)
         return r.json()
