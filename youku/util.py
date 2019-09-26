@@ -8,7 +8,7 @@ except ImportError:
 
 def check_error(response, expect_status=200):
     """
-    Youku error should return in json form, like:
+    Youku error should return as json response, like:
     HTTP 400
     {
         "error":{
@@ -18,10 +18,9 @@ def check_error(response, expect_status=200):
         }
     }
 
-    But error also maybe in response url params or response booy.
+    But error also maybe in response url params or response body.
 
-    Content-Type maybe application/json or text/plain, so
-    don't relay on it.
+    Content-Type maybe application/json or text/plain.
 
     Args:
         expect_status: normally is 200 or 201
@@ -36,8 +35,8 @@ def check_error(response, expect_status=200):
             'error' in json):
         if json:
             error = json['error']
-            raise YoukuError(error['code'], error['type'],
-                             error['description'], response.status_code)
+            raise YoukuError(error.get('code', ''), error.get('type', ''),
+                             error.get('description', ''), response.status_code)
         else:
             # try to parse error from body
             error = parse_qs(response.text)
