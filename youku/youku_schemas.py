@@ -20,7 +20,7 @@ class YoukuSchemas(object):
         """doc: http://open.youku.com/docs/doc?id=90
         """
         url = 'https://openapi.youku.com/v2/schemas/video/category.json'
-        r = requests.get(url)
+        r = requests.get(url, timeout=30)
         check_error(r)
         return r.json()
 
@@ -28,7 +28,7 @@ class YoukuSchemas(object):
         """doc: http://open.youku.com/docs/doc?id=91
         """
         url = 'https://openapi.youku.com/v2/schemas/upload/spec.json'
-        r = requests.get(url)
+        r = requests.get(url, timeout=30)
         check_error(r)
         return r.json()
 
@@ -36,7 +36,7 @@ class YoukuSchemas(object):
         """doc: http://open.youku.com/docs/doc?id=92
         """
         url = 'https://openapi.youku.com/v2/schemas/comment/expression.json'
-        r = requests.get(url)
+        r = requests.get(url, timeout=30)
         check_error(r)
         return r.json()
 
@@ -44,7 +44,7 @@ class YoukuSchemas(object):
         """doc: http://open.youku.com/docs/doc?id=93
         """
         url = 'https://openapi.youku.com/v2/schemas/show/category.json'
-        r = requests.get(url)
+        r = requests.get(url, timeout=30)
         check_error(r)
         return r.json()
 
@@ -52,7 +52,7 @@ class YoukuSchemas(object):
         """doc: http://open.youku.com/docs/doc?id=94
         """
         url = 'https://openapi.youku.com/v2/schemas/playlist/category.json'
-        r = requests.get(url)
+        r = requests.get(url, timeout=30)
         check_error(r)
         return r.json()
 
@@ -60,6 +60,6 @@ class YoukuSchemas(object):
         """doc: http://open.youku.com/docs/doc?id=95
         """
         url = 'https://openapi.youku.com/v2/schemas/searche/top/category.json'
-        r = requests.get(url)
+        r = requests.get(url, timeout=30)
         check_error(r)
         return r.json()
